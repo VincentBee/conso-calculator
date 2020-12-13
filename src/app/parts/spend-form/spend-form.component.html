@@ -1,0 +1,34 @@
+<form [formGroup]="form">
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Amount</mat-label>
+        <mat-icon matSuffix class="inverted">euro</mat-icon>
+        <input type="number" formControlName="amount" matInput required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Frequency</mat-label>
+        <mat-select formControlName="frequency">
+            <mat-option [value]="SpendFrequency.DAILY">Daily</mat-option>
+            <mat-option [value]="SpendFrequency.WEEKLY">Weekly</mat-option>
+            <mat-option [value]="SpendFrequency.MONTHLY">Monthly</mat-option>
+            <mat-option [value]="SpendFrequency.YEARLY">Yearly</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category">
+            <mat-option [value]="SpendCategory.CAR_INSURANCE">Cars</mat-option>
+            <mat-option [value]="SpendCategory.MUTUAL">Health mutual</mat-option>
+            <mat-option [value]="SpendCategory.HOUSE_INSURANCE">House insurance</mat-option>
+            <mat-option [value]="SpendCategory.GAS_ELECTRICITY">Gas and electricity</mat-option>
+            <mat-option [value]="SpendCategory.BIKE_INSURANCE">Bike</mat-option>
+            <mat-option [value]="SpendCategory.LOAN_INSURANCE">Loan insurance</mat-option>
+        </mat-select>
+    </mat-form-field>
+</form>

@@ -1,0 +1,29 @@
+<div class="content" *ngIf="!loading; else loadingTemplate">
+    <div class="kpis page">
+        <div class="kpi">
+            <div class="label">Total</div>
+            <div class="value">{{ totalPerMonth$ | async | number:'1.0-0' }}</div>
+            <div class="unit">€ / month</div>
+        </div>
+
+        <div class="kpi">
+            <div class="label">Total</div>
+            <div class="value">{{ totalPerYear$ | async | number:'1.0-0' }}</div>
+            <div class="unit">€ / year</div>
+        </div>
+
+        <div class="kpi">
+            <div class="label">Save</div>
+            <div class="value">{{ totalSave | number:'1.0-1' }}</div>
+            <div class="unit">€ / year</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <app-spend-table [spends]="spends"></app-spend-table>
+    </div>
+</div>
+
+<ng-template #loadingTemplate>
+    <mat-spinner></mat-spinner>
+</ng-template>

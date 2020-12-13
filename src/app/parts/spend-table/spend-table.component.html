@@ -1,0 +1,79 @@
+<table *ngIf="!!dataSource" mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Name
+        </th>
+        <td mat-cell *matCellDef="let element">
+            {{ element.name }}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Category
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <ng-container [ngSwitch]="element.category">
+                <ng-container *ngSwitchCase="SpendCategory.CAR_INSURANCE"><mat-icon>drive_eta</mat-icon></ng-container>
+                <ng-container *ngSwitchCase="SpendCategory.MUTUAL"><mat-icon>healing</mat-icon></ng-container>
+                <ng-container *ngSwitchCase="SpendCategory.HOUSE_INSURANCE"><mat-icon>house</mat-icon></ng-container>
+                <ng-container *ngSwitchCase="SpendCategory.GAS_ELECTRICITY"><mat-icon>flash_on</mat-icon></ng-container>
+                <ng-container *ngSwitchCase="SpendCategory.BIKE_INSURANCE"><mat-icon>two_wheeler</mat-icon></ng-container>
+                <ng-container *ngSwitchCase="SpendCategory.LOAN_INSURANCE"><mat-icon>account_balance</mat-icon></ng-container>
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Amount
+        </th>
+        <td mat-cell *matCellDef="let element">
+            {{ element.amount | number:'1.0-2' }} €
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="frequency">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Frequency
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <ng-container [ngSwitch]="element.frequency">
+                <ng-container *ngSwitchCase="SpendFrequency.DAILY">/ day</ng-container>
+                <ng-container *ngSwitchCase="SpendFrequency.WEEKLY">/ week</ng-container>
+                <ng-container *ngSwitchCase="SpendFrequency.MONTHLY">/ month</ng-container>
+                <ng-container *ngSwitchCase="SpendFrequency.YEARLY">/ year</ng-container>
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="save">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Potential save
+        </th>
+        <td mat-cell *matCellDef="let element">
+            {{ element.save | number:'1.0-2' }} €
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-icon-button [matMenuTriggerFor]="appMenu"
+                [matMenuTriggerData]="{ element: element }">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="COLUMNS; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: COLUMNS;"></tr>
+</table>
+
+<mat-menu #appMenu="matMenu">
+    <ng-template matMenuContent let-element="element">
+        <button mat-menu-item (click)="delete(element)">
+            <mat-icon>delete</mat-icon> Delete
+        </button>
+    </ng-template>
+</mat-menu>

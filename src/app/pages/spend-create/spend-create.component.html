@@ -1,0 +1,12 @@
+<div class="content">
+    <div class="page">
+        <app-spend-form [formControl]="form"></app-spend-form>
+    </div>
+</div>
+
+<footer>
+    <div class="page">
+        <button mat-raised-button routerLink="..">Back</button>
+        <button mat-raised-button color="primary" (click)="submit()" [disabled]="form.invalid">Submit</button>
+    </div>
+</footer>
